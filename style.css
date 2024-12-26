@@ -30,7 +30,7 @@
 	}
 }
 @keyframes make-visible {
-	from { opacity: 1; }
+	from { opacity: 0; }
 	25% { opacity: 0; }
 	to { opacity: 1; }
 }
