@@ -10,6 +10,8 @@
 /*	--subtle: #EC4E20;*/
 	--secondary: #856BB1;
 	--shock: #D65586;
+	--shock-highlight: #ff54b7;
+/*	--shock-highlight: #5420b1;*/
 /*	--shock: #FFBE0B;*/
 	--header-height: 2em;
 	--header-fontsize: 2em;
@@ -68,8 +70,9 @@ a {
 	transition: all 0.2s ease;
 
 	&:hover {
-		background: var(--secondary);
-		text-decoration-color: var(--accent);
+		background-color: hsl(from var(--active) h s l / 50%);
+		color: var(--shock);
+		text-decoration-color: var(--shock-highlight);
 		text-decoration-thickness: 2px;
 		/* 		box-shadow: 0 3px 0 #28AFB0; */
 	}
@@ -101,13 +104,6 @@ a {
 	margin: 1em;
 	padding: 5px;
 }
-#main-nav>ul>li.active {
-	background-color: var(--active);
-
-	& a {
-		color: var(--surface);
-	}
-}
 
 #main-nav>ul>li>a {
 	color: var(--secondary);
@@ -120,10 +116,17 @@ a {
 	transform-origin: left;
 
 	& a {
-		background: none;
+		color: var(--shock);
 	}
 }
 
+#main-nav>ul>li.active {
+	background-color: var(--active);
+
+	& a {
+		color: var(--surface);
+	}
+}
 
 
 #main-header > h1 {
