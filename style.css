@@ -7,7 +7,10 @@
 	--surface: #0B021A;
 	--active: #B953D0;
 	--accent: #28AFB0;
+/*	--subtle: #EC4E20;*/
 	--secondary: #856BB1;
+	--shock: #D65586;
+/*	--shock: #FFBE0B;*/
 	--header-height: 2em;
 	--header-fontsize: 2em;
 }
@@ -41,7 +44,7 @@
 
 html {
 	/* 	color-scheme: light dark; */
-	scroll-snap-type: y mandatory;
+	scroll-snap-type: y proximity;
 	scroll-snap-align: start;
 }
 
@@ -159,6 +162,19 @@ section {
 		font-size: 1.1rem;
 		text-wrap: balance;
 	}
+}
+
+h3 {
+	color: var(--shock);
+}
+
+b, strong {
+	color: var(--shock);
+}
+
+/* Section specific (content) theming */
+#traditions li {
+	margin: 2em 0;
 }
 
 @media screen and (max-width: 720px) {
