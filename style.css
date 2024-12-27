@@ -163,7 +163,17 @@ section {
 
 	& p {
 		font-size: 1.1rem;
-		text-wrap: balance;
+		text-wrap: pretty;
+	}
+
+	& u {
+		color: var(--active);
+		font-weight: bolder;
+		text-decoration-color: var(--shock-highlight);
+	}
+	
+	& emph {
+		color: var(--accent);
 	}
 }
 
@@ -179,6 +189,13 @@ b, strong {
 #traditions li {
 	margin: 2em 0;
 }
+
+
+::selection {
+	background-color: hsl(from var(--shock-highlight) h s l / 50%);
+}
+
+/* Small(ITS AVERAGE SIZED) screens */
 
 @media screen and (max-width: 720px) {
 	:root {

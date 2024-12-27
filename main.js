@@ -395,12 +395,51 @@ tsParticles.load("particles-js-id", options).then(container => {
 });
 
 
+function tagger(element, text, tag) {
+  // This is really not a good way but not being able to edit the HTML sucks
+  element.innerHTML = element.innerHTML.replaceAll(text, `<${tag}>${text}</${tag}>`)
+}
+
 
 let h1 = document.getElementById('main-header').children[0];
-h1.innerHTML = 'Celebrating the <emph>Winter Solstice</emph>';
+tagger(h1, 'Winter Solstice', 'emph')
 
+let intro = document.getElementById('introduction').children[1];
+tagger(intro, 'astronomical event', 'emph')
+tagger(intro, 'December in the Northern Hemisphere', 'b')
+tagger(intro, 'June in the Southern Hemisphere', 'b')
+tagger(intro, 'rebirth, reflection, and the triumph of light over darkness', 'u')
 
+let science = document.querySelectorAll('#science > p');
+science.forEach((sc) => {
+  tagger(sc, '23.5 degrees', 'i')
+})
+tagger(science[1], 'December 21st or 22nd', 'b')
+tagger(science[1], 'June 20th or 21st', 'b')
+tagger(science[1], 'Tropic of Capricorn', 'u')
+tagger(science[1], 'Tropic of Cancer', 'u')
+tagger(science[2], '"solstice"', 'emph')
+tagger(science[2], '"sol"', 'emph')
+tagger(science[2], '"sistere"', 'emph')
 
+tagger(document.getElementById('hemispheres').children[1], 'opposite seasons', 'b')
+
+let nhemi = document.getElementById('northern-hemisphere').children[1];
+tagger(nhemi, 'beginning of winter', 'emph')
+tagger(nhemi, 'shortest day and longest night', 'u')
+
+let shemi = document.getElementById('southern-hemisphere').children[1];
+tagger(shemi, 'start of summer', 'emph')
+tagger(shemi, 'longest day and shortest night', 'u')
+
+tagger(document.getElementById('newgrange').children[1], 'over 5,000 years ago', 'u')
+tagger(document.getElementById('intiraymi').children[1], 'ancient Incan festival', 'emph')
+tagger(document.getElementById('modranicht').children[1], 'honor female deities and ancestral mothers', 'u')
+tagger(document.getElementById('koliada').children[1], 'Slavic festival', 'emph')
+
+let conclusion = document.getElementById('conclusion').children[1];
+tagger(conclusion, 'connects humanity', 'b')
+tagger(conclusion, 'hope, renewal, and the enduring human spirit', 'u')
 
 var observer = new IntersectionObserver(onIntersection, {
 	root: null,
