@@ -330,4 +330,13 @@ b, strong {
 			text-align: justify;
 		}
 	}
+
+	.celebration {
+		pointer-events: none;
+		background-attachment: scroll;
+
+		& p::after {
+			content: none;
+		}
+	}
 }
