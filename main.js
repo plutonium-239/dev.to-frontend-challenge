@@ -443,7 +443,7 @@ tagger(conclusion, 'hope, renewal, and the enduring human spirit', 'u')
 
 var observer = new IntersectionObserver(onIntersection, {
 	root: null,
-	threshold: .7
+	threshold: .5
 })
 
 function onIntersection(entries, opts) {
