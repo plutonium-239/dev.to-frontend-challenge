@@ -1,4 +1,4 @@
-let options = {
+const options = {
   "autoPlay": true,
   "background": {
     "color": {
@@ -401,16 +401,22 @@ function tagger(element, text, tag) {
 }
 
 
-let h1 = document.getElementById('main-header').children[0];
+const h1 = document.getElementById('main-header').children[0];
 tagger(h1, 'Winter Solstice', 'emph')
 
-let intro = document.getElementById('introduction').children[1];
+const intro = document.getElementById('introduction').children[1];
 tagger(intro, 'astronomical event', 'emph')
 tagger(intro, 'December in the Northern Hemisphere', 'b')
 tagger(intro, 'June in the Southern Hemisphere', 'b')
 tagger(intro, 'rebirth, reflection, and the triumph of light over darkness', 'u')
 
-let science = document.querySelectorAll('#science > p');
+const introimgcont = document.createElement('div');
+const introimg = document.createElement('img');
+introimg.src = 'images/winter-landscape.jpg';
+introimgcont.appendChild(introimg);
+intro.insertAdjacentElement('afterend', introimgcont);
+
+const science = document.querySelectorAll('#science > p');
 science.forEach((sc) => {
   tagger(sc, '23.5 degrees', 'i')
 })
@@ -424,11 +430,11 @@ tagger(science[2], '"sistere"', 'emph')
 
 tagger(document.getElementById('hemispheres').children[1], 'opposite seasons', 'b')
 
-let nhemi = document.getElementById('northern-hemisphere').children[1];
+const nhemi = document.getElementById('northern-hemisphere').children[1];
 tagger(nhemi, 'beginning of winter', 'emph')
 tagger(nhemi, 'shortest day and longest night', 'u')
 
-let shemi = document.getElementById('southern-hemisphere').children[1];
+const shemi = document.getElementById('southern-hemisphere').children[1];
 tagger(shemi, 'start of summer', 'emph')
 tagger(shemi, 'longest day and shortest night', 'u')
 
@@ -437,11 +443,26 @@ tagger(document.getElementById('intiraymi').children[1], 'ancient Incan festival
 tagger(document.getElementById('modranicht').children[1], 'honor female deities and ancestral mothers', 'u')
 tagger(document.getElementById('koliada').children[1], 'Slavic festival', 'emph')
 
-let conclusion = document.getElementById('conclusion').children[1];
+const conclusion = document.getElementById('conclusion').children[1];
 tagger(conclusion, 'connects humanity', 'b')
 tagger(conclusion, 'hope, renewal, and the enduring human spirit', 'u')
 
-var observer = new IntersectionObserver(onIntersection, {
+const secret = document.createElement('button');
+secret.id = 'secret-button'
+secret.innerText = "Enable more cool stuff"
+document.querySelector('#main-footer').insertAdjacentElement('beforeend', secret)
+
+let secret_enabled = false;
+secret.onclick = () => {
+	const cscript = document.createElement('script');
+	cscript.type = 'text/javascript';
+	cscript.src = '/cooler.js';
+	document.head.appendChild(cscript)
+	secret_enabled = true
+	secret.innerText = 'Reload to be normal!'
+}
+
+const observer = new IntersectionObserver(onIntersection, {
 	root: null,
 	threshold: .5
 })
@@ -451,12 +472,15 @@ function onIntersection(entries, opts) {
 		const id = entry.target.getAttribute('id');
 		if (entry.isIntersecting) {
 			document.querySelector(`#main-nav>ul>li>a[href="#${id}"]`).parentElement.classList.add('active');
+			document.getElementById(id).classList.add('active-section')
 		} else {
 			document.querySelector(`#main-nav>ul>li>a[href="#${id}"]`).parentElement.classList.remove('active');
+			document.getElementById(id).classList.remove('active-section')
+			if (secret_enabled)
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
 		}
 	})
 }
 
 // Use the observer to observe an element
 document.querySelectorAll('section').forEach((el) => observer.observe(el))
-
