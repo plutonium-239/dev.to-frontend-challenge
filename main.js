@@ -454,6 +454,11 @@ document.querySelector('#main-footer').insertAdjacentElement('beforeend', secret
 
 let secret_enabled = false;
 secret.onclick = () => {
+	const is_mobile = window.matchMedia("screen and (max-width: 720px)");
+	if (is_mobile.matches) {
+		secret.innerText = 'Please use a desktop browser for this!'
+		return
+	}
 	const cscript = document.createElement('script');
 	cscript.type = 'text/javascript';
 	cscript.src = '/cooler.js';
@@ -461,6 +466,11 @@ secret.onclick = () => {
 	secret_enabled = true
 	secret.innerText = 'Reload to be normal!'
 }
+
+const tip = document.createElement('p');
+tip.innerText = "To get the full experience, view this site on a desktop browser";
+tip.id = 'mobile-tip';
+h1.parentElement.insertAdjacentElement('beforeend', tip);
 
 const observer = new IntersectionObserver(onIntersection, {
 	root: null,
