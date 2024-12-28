@@ -149,10 +149,18 @@ const conclusion = document.getElementById('conclusion').children[1];
 tagger(conclusion, 'connects humanity', 'b')
 tagger(conclusion, 'hope, renewal, and the enduring human spirit', 'u')
 
+const footer = document.querySelector('#main-footer');
+
 const secret = document.createElement('button');
 secret.id = 'secret-button'
 secret.innerText = "Enable more cool stuff"
-document.querySelector('#main-footer').insertAdjacentElement('beforeend', secret)
+footer.insertAdjacentElement('beforeend', secret)
+
+const made_by_me = document.createElement('p');
+made_by_me.innerHTML = 'Made by <a href="https://plutonium-239.github.io">plutonium-239</a> for the <a href="https://dev.to/challenges/frontend-2024-12-04">DEV.to Frontend Challenge: December Edition (2024)</a>';
+footer.insertAdjacentElement('afterbegin', made_by_me);
+
+footer.querySelector('#footer-nav li:last-child a').href = "https://github.com/plutonium-239/dev.to-frontend-challenge"
 
 let secret_enabled = false;
 secret.onclick = () => {
