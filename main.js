@@ -461,7 +461,7 @@ secret.onclick = () => {
 	}
 	const cscript = document.createElement('script');
 	cscript.type = 'text/javascript';
-	cscript.src = '/cooler.js';
+	cscript.src = 'cooler.js';
 	document.head.appendChild(cscript)
 	secret_enabled = true
 	secret.innerText = 'Reload to be normal!'
